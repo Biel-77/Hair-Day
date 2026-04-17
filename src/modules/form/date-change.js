@@ -1,4 +1,3 @@
-import { schedulesDay } from "../schedules/load"
-const selectedDate = document.getElementById('date')
-
-selectedDate.onchange= () => schedulesDay()
+import { schedulesDay } from "../schedules/load.js";
+const selectedDate = document.getElementById('date');
+selectedDate.onchange = () => schedulesDay();

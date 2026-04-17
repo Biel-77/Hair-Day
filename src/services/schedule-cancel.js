@@ -7,7 +7,6 @@ export async function scheduleCancel(id){
         })
         alert("Agendamento cancelado com sucesso.")
     } catch (error) {
-        alert("Não foi possível cancelar o agendamento.")
-        console.log(error)
+        alert("Não foi possível cancelar o agendamento.");
     }
 }

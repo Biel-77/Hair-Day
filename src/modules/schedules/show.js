@@ -1,10 +1,8 @@
 import dayjs from "dayjs";
 
-//sessoes manha,tarde e noite 
-
-const periodMorning = document.getElementById('period-morning')
-const periodAfternoon = document.getElementById('period-afternoon') 
-const periodNight = document.getElementById('period-night')
+const periodMorning = document.getElementById('period-morning');
+const periodAfternoon = document.getElementById('period-afternoon');
+const periodNight = document.getElementById('period-night');
 
 export function schedulesShow({dailySchedules}) {
     try {
@@ -12,36 +10,25 @@ export function schedulesShow({dailySchedules}) {
         periodAfternoon.innerHTML = ''
         periodNight.innerHTML = ''
 
-        //renderiza os agendamentosporperiodo
         dailySchedules.forEach((schedule) => {
-            const item = document.createElement('li')
+            const item = document.createElement('li');
+            const time = document.createElement('strong');
+            const name = document.createElement('span');
 
-            const time = document.createElement('strong')
+            item.setAttribute('data-id', schedule.id);
+            time.textContent = dayjs(schedule.when).format('HH:mm');
+            name.textContent = schedule.name;
 
-            const name = document.createElement('span')
+            const cancelIcon = document.createElement('img');
+            cancelIcon.classList.add('cancel-icon');
+            cancelIcon.setAttribute('src','./src/assets/cancel.svg');
+            cancelIcon.setAttribute('alt','cancelar');
 
-             //addo iddo agendamento 
-             item.setAttribute('data-id', schedule.id)
+            item.appendChild(time);
+            item.appendChild(name);
+            item.appendChild(cancelIcon);
 
-             time.textContent = dayjs(schedule.when).format('HH:mm')
-             name.textContent = schedule.name
-
-             //icone de cancelar
-             const cancelIcon = document.createElement('img')
-             cancelIcon.classList.add('cancel-icon')
-                cancelIcon.setAttribute('src','./src/assets/cancel.svg')
-
-            cancelIcon.setAttribute('alt','cancelar')
-
-            //add o tempo e nome do item 
-            item.appendChild(time)
-            item.appendChild(name)
-            item.appendChild(cancelIcon)
-
-            //obtem somente a hora 
-            const hour = dayjs(schedule.when).hour()
-
-            //renderizar o agendamento na sessao 
+            const hour = dayjs(schedule.when).hour(); 
             if(hour <= 12) {
                 periodMorning.appendChild(item)
             }
