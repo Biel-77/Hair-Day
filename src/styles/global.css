@@ -58,3 +58,38 @@ body {
     flex-direction: column;
   }
 }
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    grid-template-rows: auto;
+  }
+
+  .logo {
+    height: 3rem;
+    width: 7.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 12px;
+  }
+
+  .container {
+    padding: 0.25rem;
+  }
+
+  .logo {
+    height: 2.5rem;
+    width: 6rem;
+    padding: 0.4rem 0.5rem;
+  }
+}

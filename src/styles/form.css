@@ -98,57 +98,127 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-
-  margin-bottom: 2rem;
 }
 
 .hour {
-  width: 4.87rem;
-  height: 2.5rem;
-
-  border-radius: 0.5rem;
-
-  font-size: 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid #3e3c41;
-
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: #b2afb6;
+  font-size: 0.87rem;
   cursor: pointer;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hour-period {
-  width: 100%;
-  color: #98959d;
-  font-size: 0.87rem;
-
-  margin-top: 0.75rem;
+  transition: all 0.3s;
 }
 
 .hour-available {
-  background-color: #2e2c30;
+  cursor: pointer;
+}
+
+.hour-available:hover {
+  background-color: #b8952e;
+  color: #050505;
+  border-color: #b8952e;
+}
+
+.hour-available.hour-selected {
+  background-color: #b8952e;
+  color: #050505;
+  border-color: #b8952e;
 }
 
 .hour-unavailable {
   opacity: 0.5;
-
   cursor: not-allowed;
 }
 
-.hour-selected {
-  border: 1px solid #b8952e;
-  color: #b8952e;
+.hour-period {
+  width: 100%;
+  padding: 0.75rem 0;
+  color: #98959d;
+  font-weight: 700;
+  font-size: 0.87rem;
 }
 
-.hour:not(.hour-unavailable):hover {
-  border: 1px solid #b8952e;
-  color: #b8952e;
-}
-
-@media (max-width: 1100px) {
+@media (max-width: 768px) {
   .form {
-    overflow-y: auto;
     max-width: 100%;
+    padding: 3rem 1.5rem;
+    padding-top: 4rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .form > header {
+    margin-bottom: 1rem;
+  }
+
+  .form > header h1 {
+    font-size: 1.25rem;
+  }
+
+  .input {
+    height: 2.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    height: 3rem;
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .hours {
+    gap: 0.4rem;
+  }
+
+  .hour {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 2.5rem 1rem;
+    padding-top: 3.5rem;
+  }
+
+  .form > header {
+    margin-bottom: 0.75rem;
+  }
+
+  .form > header h1 {
+    font-size: 1.1rem;
+  }
+
+  .form > header p {
+    font-size: 0.75rem;
+  }
+
+  .label {
+    font-size: 0.9rem;
+  }
+
+  .input {
+    height: 2.5rem;
+    padding: 0.6rem 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .button {
+    height: 2.75rem;
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .hours {
+    gap: 0.3rem;
+  }
+
+  .hour {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
   }
 }
