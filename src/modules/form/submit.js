@@ -37,12 +37,10 @@ form.onsubmit = async event => {
     const when = dayjs(date).add(hour, 'hour');
     const id = new Date().getTime();
 
-    console.log('Enviando agendamento:', { id: String(id), name, when });
     await SchedulesNew({ id: String(id), name, when });
     await schedulesDay();
     clientName.value = '';
   } catch (error) {
-    console.error('Erro ao agendar:', error);
-    alert('Erro: ' + (error.message || 'Não foi possível realizar o agendamento.'));
+    alert('Não foi possível realizar o agendamento.');
   }
 };
