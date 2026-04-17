@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 
 import { SchedulesNew } from '../../services/schedule-new.js';
 import { schedulesDay } from '../schedules/load.js';
+import { SchedulesFetchByDay } from '../../services/schedule-fetch-by-day.js';
 
 const form = document.querySelector('form');
 const selectedDate = document.getElementById('date');
@@ -21,8 +22,19 @@ form.onsubmit = async event => {
     const hourSelected = document.querySelector('.hour-selected');
     if (!hourSelected) return alert('Selecione a hora.');
 
+    const date = selectedDate.value;
+    const dailySchedules = await SchedulesFetchByDay({ date });
+
+    const clientExists = dailySchedules.some(schedule => 
+      schedule.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (clientExists) {
+      return alert(`${name} já possui um agendamento no dia ${dayjs(date).format('DD/MM/YYYY')}.`);
+    }
+
     const [hour] = hourSelected.innerText.split(':');
-    const when = dayjs(selectedDate.value).add(hour, 'hour');
+    const when = dayjs(date).add(hour, 'hour');
     const id = new Date().getTime();
 
     await SchedulesNew({ id: String(id), name, when });
@@ -30,6 +42,5 @@ form.onsubmit = async event => {
     clientName.value = '';
   } catch (error) {
     alert('Não foi possível realizar o agendamento.');
-    console.log(error);
   }
 };
